@@ -1,23 +1,125 @@
-File Organizer is a command-line automation tool written in Python that organizes cluttered directories by sorting files into folders based on their file extension. A Downloads folder with hundreds of mixed PDFs, images, documents, and audio files can be organized in seconds with a single command.
+# 📁 File Organizer
 
-Background: I developed this project in my first semester for an Entrepreneurship course. Our team’s goal was to explore how automation could improve everyday file management, and this tool was the first step toward that idea. The project began as a simple script and was later refined into a more robust, tested tool.
+![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Tests](https://github.com/YOUR-USERNAME/file-organizer/actions/workflows/ci.yml/badge.svg)
 
-How it works: The user provides a folder path. The program scans its contents, reads each file’s extension, creates a matching sub-folder if one doesn’t exist yet (for example pdf/, jpg/, txt/), and moves the file into it. When it finishes, it prints a summary of how many files were moved into each folder.
+A simple Python automation tool that organizes a messy folder by sorting files into sub-folders based on their file extension.
 
-Key features:
+Built during my first semester for an **Entrepreneurship** course. Our idea was to bring automation into file management, and this was the first step toward it.
 
-Automatic folder creation based on file type
-Case-insensitive handling, so .PDF and .pdf are treated the same
-Duplicate protection: existing files are never overwritten; conflicts are renamed (report_1.pdf)
-Safe skipping of files without extensions, existing folders, and the script itself
-Clear error handling for invalid paths
-Works from a command-line argument or an interactive prompt
-Zero external dependencies, using only Python’s standard library (os/pathlib, shutil)
+## How It Works
 
-Quality and engineering practices: The project includes a unit test suite written with pytest covering the main behaviors and edge cases, plus a GitHub Actions workflow that runs the tests automatically on every push across multiple Python versions.
+**Before**
 
-What I learned: Working with the file system in Python, handling edge cases defensively, structuring code into reusable functions, writing automated tests, and setting up a professional repository with documentation, licensing, and CI.
+```
+Downloads/
+├── report.pdf
+├── photo.jpg
+├── notes.txt
+├── resume.pdf
+└── song.mp3
+```
 
-Planned improvements: Category-based sorting (Images, Documents, Videos), an undo feature, a dry-run preview mode, folder watching for automatic organization, and a simple GUI.
+**After**
 
-Tech stack: Python 3, pytest, GitHub Actions
+```
+Downloads/
+├── pdf/
+│   ├── report.pdf
+│   └── resume.pdf
+├── jpg/
+│   └── photo.jpg
+├── txt/
+│   └── notes.txt
+└── mp3/
+    └── song.mp3
+```
+
+## Features
+
+- Sorts files into folders named after their extension
+- Creates folders automatically when they don't exist
+- Case-insensitive (`.PDF` and `.pdf` go in the same folder)
+- Never overwrites files (duplicates are renamed `file_1.txt`, `file_2.txt`, ...)
+- Skips files with no extension and ignores existing folders
+- Prints a summary of what was moved
+- Uses only the Python standard library, so there is nothing to install
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.9 or higher
+
+### Installation
+
+```bash
+git clone https://github.com/YOUR-USERNAME/file-organizer.git
+cd file-organizer
+```
+
+### Usage
+
+Pass the folder path as an argument:
+
+```bash
+python file_organizer.py "C:/Users/YourName/Downloads"
+```
+
+Or run it with no arguments and enter the path when prompted:
+
+```bash
+python file_organizer.py
+Enter location: C:/Users/YourName/Downloads
+```
+
+Example output:
+
+```
+Organized 5 file(s):
+  jpg/  <- 1 file(s)
+  mp3/  <- 1 file(s)
+  pdf/  <- 2 file(s)
+  txt/  <- 1 file(s)
+```
+
+> ⚠️ **Tip:** Try it on a test folder first. Files are moved, not copied.
+
+## Running Tests
+
+```bash
+pip install -r requirements.txt
+pytest
+```
+
+## Project Structure
+
+```
+file-organizer/
+├── file_organizer.py        # Main script
+├── tests/
+│   └── test_file_organizer.py
+├── .github/workflows/ci.yml # Automated tests
+├── requirements.txt
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
+## Future Improvements
+
+- Organize by file category (Images, Documents, Videos) instead of raw extension
+- Undo option to reverse the last organization
+- Scheduled / automatic organization of a watched folder
+- GUI version
+- Dry-run mode to preview changes before moving files
+
+## License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.
+
+## Author
+
+**YOUR NAME**
+[GitHub](https://github.com/YOUR-USERNAME) · [LinkedIn](https://linkedin.com/in/YOUR-PROFILE)
